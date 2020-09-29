@@ -1,0 +1,22 @@
+{
+  "name": "cst438moviesnacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sovereign5/CST438MovieSnacks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sovereign5/CST438MovieSnacks/issues"
+  },
+  "homepage": "https://github.com/Sovereign5/CST438MovieSnacks#readme",
+  "dependencies": {
+    "node-modules": "^1.0.1"
+  }
+}
