@@ -5,7 +5,10 @@ const session = require('express-session');
 
 
 app.set("view engine", "ejs");
-app.use(express.static("public")); //folder for images, css, js
+app.use(express.static("public")); //folder for img, css, js
+
+var loginRouter = require('./routes/login');
+
 //app.use(express.urlencoded()); //use to parse data sent using the POST method
 app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }}));
 app.use(function(req, res, next) {
@@ -19,6 +22,9 @@ app.get("/", async function(req, res){
     }
     res.render("main");
 });//root
+
+app.use('/login', loginRouter);
+module.exports = app;
 
 // functions //
 
