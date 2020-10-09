@@ -7,3 +7,19 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+function checkUsername(username){
+    let stmt = 'SELECT * FROM users WHERE username=?';
+    return new Promise(function(resolve, reject){
+        connection.query(stmt, [username], function(error, results){
+            if(error) throw error;
+            resolve(results);
+        });
+    });
+}
+
+function checkPassword(password, hash){
+    return new Promise(function(resolve, reject){
+
+    });
+}

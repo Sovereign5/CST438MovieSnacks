@@ -8,6 +8,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public")); //folder for img, css, js
 
 var loginRouter = require('./routes/login');
+var signupRouter = require('./routes/signup');
 
 //app.use(express.urlencoded()); //use to parse data sent using the POST method
 app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }}));
@@ -24,6 +25,7 @@ app.get("/", async function(req, res){
 });//root
 
 app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
 module.exports = app;
 
 // functions //
