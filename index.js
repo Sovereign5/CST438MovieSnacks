@@ -51,10 +51,7 @@ module.exports = app;
 
 
 //starting server
-app.listen(process.env.PORT, process.env.IP, function(){
-console.log("Express server is running...");
-});
-
-var listener = app.listen(8888, function(){
-    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
+var server = app.listen(process.env.PORT || 8888, function () {
+  var port = server.address().port;
+  console.log("Express is working on port " + port);
 });
