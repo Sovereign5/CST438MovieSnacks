@@ -10,10 +10,13 @@
         </p>
         <p>
             <label>Password:</label>
-            <input type="text" name="password">
+            <input type="password" name="password">
         </p>
         <p>
-            <input type="submit" value="Sign Up">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Sign Up</button>
         </p>
     </form>
+    <% if(typeof usernameAlreadyTaken != 'undefined' && usernameAlreadyTaken) { %>
+        <div id="usernameAlreadyTaken" style="color:red";> Username Already Taken! </div>
+    <% } %>
 </div>

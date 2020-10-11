@@ -12,3 +12,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#invalidLogin {
+    text-align: center;
+}

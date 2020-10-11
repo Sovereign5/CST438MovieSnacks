@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 <%- include('partials/navbar.ejs') %>
 <div class="container">
-    <form id="login" method="post" action="/login">
+    <form id="login" method="POST" action="/login">
         <h1>Login</h1>
         <br>
         <p>
@@ -10,11 +10,15 @@
         </p>
         <p>
             <label>Password:</label>
-            <input type="text" name="password">
+            <input type="password" name="password">
         </p>
         <p>
-            <input type="submit" value="Login">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Login</button>
         </p>
     </form>
+    <% if(typeof invalidLogin != 'undefined' && invalidLogin) { %>
+        <div id="invalidLogin" style="color:red";> Invalid Login </div>
+    <% } %>
+    
 </div>
 
