@@ -18,9 +18,9 @@ ALTER TABLE `users`
   MODIFY `userId` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 INSERT INTO `users` (`userId`, `username`, `password`) VALUES
-(1, 'Alexis', 'Caasi', 'acaasi', 'abcd1234'),
-(2, 'Username', 'Password', 'username', 'password'),
-(3, 'Anakin', 'Skywalker', 'Vader', 'abcd1234');
+(1, 'acaasi', 'abcd1234'),
+(2, 'username', 'password'),
+(3, 'Vader', 'abcd1234');
 
 DROP TABLE IF EXISTS `items`;
 
@@ -44,7 +44,7 @@ INSERT INTO `items` (`itemId`, `itemlink`, `itemname`, `unitsleft`, `price`) VAL
 (2, 'https://userscontent2.emaze.com/images/c0e2fea1-bc89-48a2-9a5c-6f8337ff358e/3721ddf74940bed2f8c9b3e13a169f83.png', 'Soda', 10, 5),
 (3, 'https://cdn.shopify.com/s/files/1/2960/2654/products/12209_Red_Vines_Red_Twist_5oz_Tray_Out_of_Pkg_UPDATED.jpg?v=1587568247', 'Licorice', 10, 3),
 (4, 'https://www.candywarehouse.com/item-images/126734-01_trolli-sour-brite-crawlers-minis-gummy-worms-35-ounce-packs-12-piece-box.jpg?resizeid=102&resizeh=500&resizew=500', 'Gummy Worms', 10, 3),
-(5, 'https://images.heb.com/is/image/HEBGrocery/000112564', 'Kit Kat' 10, 3);
+(5, 'https://images.heb.com/is/image/HEBGrocery/000112564', 'Kit Kat', 10, 3);
 
 DROP TABLE IF EXISTS `cart`;
 

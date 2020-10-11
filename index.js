@@ -1,17 +1,20 @@
 const express = require("express");
-// const mysql   = require("mysql");
+var mysql = require("mysql");
 const app = express();
 const session = require('express-session');
-
+var bodyParser = require('body-parser');
+var path = require('path');
 
 app.set("view engine", "ejs");
 app.use(express.static("public")); //folder for img, css, js
 
+app.set('views', path.join(__dirname, 'views'));
+
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
 
-//app.use(express.urlencoded()); //use to parse data sent using the POST method
-app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }}));
+app.use(bodyParser.urlencoded({extended:true})); //use to parse data sent using the POST method
+app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }, resave: true, saveUninitialized: true}));
 app.use(function(req, res, next) {
    res.locals.isAuthenticated = req.session.authenticated; 
    next();
@@ -24,34 +27,45 @@ app.get("/", async function(req, res){
     res.render("main");
 });//root
 
+app.post('/views/login', async function(req, res) {
+    console.log(req.body.username + '\n');
+    let userLoggedIn = await validateLogin(req.body.username, req.body.password);
+    if(userLoggedIn.length) {
+        res.render('main');
+    }
+    res.render('login', {invalidLogin:true});
+});
+
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 module.exports = app;
 
 // functions //
 
+function isAuthenticated(req, res, next){
+     if(!req.session.authenticated) res.redirect('/login');
+     else next();
+ }
 
-// function isAuthenticated(req, res, next){
-//     if(!req.session.authenticated) res.redirect('/login');
-//     else next();
-// }
+function dbConnection(){
+    let conn = mysql.createConnection({
+                 host: "localhost",
+                 user: "username",
+             password: "password",
+             database: "snackDB"
+        });
 
-// function dbConnection(){
+return conn;
+}
 
-//    let conn = mysql.createConnection({
-//                  host: "us-cdbr-iron-east-01.cleardb.net",
-//                  user: "b7e06ef97d1c7b",
-//              password: "08496ced",
-//              database: "heroku_eeffc7f196aa5e6"
-//        });
-
-// return conn;
-
-// }
-
+const db = dbConnection().connect();
+global.db = db; 
 
 //starting server
-var server = app.listen(process.env.PORT || 8888, function () {
-  var port = server.address().port;
-  console.log("Express is working on port " + port);
+app.listen(process.env.PORT, process.env.IP, function(){
+console.log("Express server is running...");
+});
+
+var listener = app.listen(8888, function(){
+    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
 });
