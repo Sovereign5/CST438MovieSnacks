@@ -51,19 +51,30 @@ function isAuthenticated(req, res, next){
 }
 //global.isAuthenticated = isAuthenticated();
 
+// function dbConnection(){
+//     let conn = mysql.createConnection({
+//                  host: "localhost",
+//                  user: "username",
+//              password: "password",
+//              database: "snackDB"
+//         });
+
+// return conn;
+// }
+
 function dbConnection(){
     let conn = mysql.createConnection({
-                 host: "localhost",
-                 user: "username",
-             password: "password",
-             database: "snackDB"
+                 host: process.env.HOST,
+                 user: process.env.USERNAME,
+             password: process.env.PASSWORD,
+             database: process.env.DATABASE
         });
 
 return conn;
 }
 
 const db = dbConnection().connect();
-global.db = db; 
+global.db = db;
 
 //starting server
 app.listen(process.env.PORT, process.env.IP, function(){
