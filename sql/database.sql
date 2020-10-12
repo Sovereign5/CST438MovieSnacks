@@ -41,10 +41,13 @@ ALTER TABLE `items`
 
 INSERT INTO `items` (`itemId`, `itemlink`, `itemname`, `unitsleft`, `price`) VALUES
 (1, 'https://www.onceuponachef.com/images/2013/04/nigellas-party-popcorn-1200x795.jpg', 'Popcorn', 10, 10),
-(2, 'https://userscontent2.emaze.com/images/c0e2fea1-bc89-48a2-9a5c-6f8337ff358e/3721ddf74940bed2f8c9b3e13a169f83.png', 'Soda', 10, 5),
-(3, 'https://cdn.shopify.com/s/files/1/2960/2654/products/12209_Red_Vines_Red_Twist_5oz_Tray_Out_of_Pkg_UPDATED.jpg?v=1587568247', 'Licorice', 10, 3),
-(4, 'https://www.candywarehouse.com/item-images/126734-01_trolli-sour-brite-crawlers-minis-gummy-worms-35-ounce-packs-12-piece-box.jpg?resizeid=102&resizeh=500&resizew=500', 'Gummy Worms', 10, 3),
-(5, 'https://images.heb.com/is/image/HEBGrocery/000112564', 'Kit Kat', 10, 3);
+(2, 'https://1.bp.blogspot.com/-RO4AAdiXaNA/U_EZY5chKBI/AAAAAAAAAig/71TKEEZbmKE/s1600/oscar-mayer-hot-dog.png', 'Hot Dogs', 10, 5),
+(3, 'https://userscontent2.emaze.com/images/c0e2fea1-bc89-48a2-9a5c-6f8337ff358e/3721ddf74940bed2f8c9b3e13a169f83.png', 'Soda', 10, 5),
+(4, 'https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/vhurf9vfij54s3zpkuo5.jpg', 'Nachos', 10, 5),
+(5, 'https://cdn.shopify.com/s/files/1/2960/2654/products/12209_Red_Vines_Red_Twist_5oz_Tray_Out_of_Pkg_UPDATED.jpg?v=1587568247', 'Licorice', 10, 3),
+(6, 'https://www.candywarehouse.com/item-images/126734-01_trolli-sour-brite-crawlers-minis-gummy-worms-35-ounce-packs-12-piece-box.jpg?resizeid=102&resizeh=500&resizew=500', 'Gummy Worms', 10, 3),
+(7, 'https://images.heb.com/is/image/HEBGrocery/000112564', 'Kit Kat', 10, 3),
+(8, 'https://www.candywarehouse.com/item-images/127615-01_milk-chocolate-mms-candy-packs-48-piece-box.jpg?resizeid=102&resizeh=500&resizew=500', 'M&M Candies', 10, 3);
 
 DROP TABLE IF EXISTS `cart`;
 
