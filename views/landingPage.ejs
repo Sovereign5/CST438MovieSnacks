@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<%- include('partials/loginNavbar.ejs') %>
+<div class="container">
+    <ul>
+        <!-- <h5 class="disabled" style="color:white"> Welcome, <%=username %>! </h5> -->
+        <% snacks.forEach(function(s) { %>
+           <div class="img-thumbnail flex-item">
+                <img width="550px" height="550px" src='<%=s.itemlink%>'>
+                <div id="description">
+                    <h4><%=s.itemname%></h4>
+                    <h5>Units Left: <%=s.unitsleft%></h5>
+                    <h4>Cost: $<%=s.price%></h4>
+                    <br>
+                </div>
+              </div> 
+        <% }); %>
+    </ul>
+</div>

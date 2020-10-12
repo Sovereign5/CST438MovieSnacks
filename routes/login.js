@@ -4,15 +4,20 @@ var mysql = require("mysql");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('login', { title: 'Express' });
+    console.log(req.session);
+    res.render('login', { title: 'Express' }); // previously put login
 });
 
 router.post('/', async function(req, res, next) {
-    console.log(req.body.username + '\n');
     let userLoggedIn = await validateLogin(req.body.username, req.body.password);
+    console.log(userLoggedIn);
+    console.log();
     if(userLoggedIn.length) {
-        res.render('main');
-    }
+        req.session.authenticated = true;
+        req.session.user = req.body.username;
+        res.redirect("landingPage");
+        return;
+     }
     res.render('login', {invalidLogin:true});
 });
 

@@ -1,5 +1,5 @@
 <%- include('partials/header') %>
-<%- include('partials/navbar.ejs') %>
+<%- include('partials/loggedInNavbar.ejs') %>
 <div class="container">
     <form id="login" method="POST" action="/login">
         <h1>Login</h1>
@@ -19,6 +19,6 @@
     <% if(typeof invalidLogin != 'undefined' && invalidLogin) { %>
         <div id="invalidLogin" style="color:red";> Invalid Login </div>
     <% } %>
-    
 </div>
+
 

@@ -12,6 +12,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
+var logoutRouter = require('./routes/logout');
+var landingPageRouter = require('./routes/landingPage');
 
 app.use(bodyParser.urlencoded({extended:true})); //use to parse data sent using the POST method
 app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }, resave: true, saveUninitialized: true}));
@@ -38,14 +40,16 @@ app.post('/views/login', async function(req, res) {
 
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/logout', logoutRouter);
+app.use('/landingPage', landingPageRouter);
 module.exports = app;
 
 // functions //
-
 function isAuthenticated(req, res, next){
      if(!req.session.authenticated) res.redirect('/login');
      else next();
- }
+}
+//global.isAuthenticated = isAuthenticated();
 
 function dbConnection(){
     let conn = mysql.createConnection({
