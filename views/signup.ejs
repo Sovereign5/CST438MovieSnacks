@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar.ejs') %>
+<div class="container">
+    <form id="login" method="post" action="/signup">
+        <h1>Sign Up</h1>
+        <br>
+        <p>
+            <label>Username:</label>
+            <input type="text" name="username">
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" name="password">
+        </p>
+        <p>
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Sign Up</button>
+        </p>
+    </form>
+    <% if(typeof usernameAlreadyTaken != 'undefined' && usernameAlreadyTaken) { %>
+        <div id="usernameAlreadyTaken" style="color:red";> Username Already Taken! </div>
+    <% } %>
+</div>

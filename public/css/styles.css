@@ -12,3 +12,15 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#invalidLogin {
+    text-align: center;
+}
+
+#description {
+    text-align: center;
+}
+
+#welcomePage {
+    text-align:center;
+}
