@@ -6,6 +6,7 @@ var mysql = require("mysql");
 router.get('/', function(req, res, next) {
     console.log(req.session);
     req.session.destroy();
+    
     res.redirect("/login");
 });
 
