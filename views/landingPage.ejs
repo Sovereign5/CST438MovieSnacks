@@ -1,18 +1,21 @@
 <%- include('partials/header') %>
 <%- include('partials/loginNavbar.ejs') %>
 <div class="container">
-    <ul>
-        <!-- <h5 class="disabled" style="color:white"> Welcome, <%=username %>! </h5> -->
-        <% snacks.forEach(function(s) { %>
-           <div class="img-thumbnail flex-item">
-                <img width="530px" height="530px" src='<%=s.itemlink%>'>
-                <div id="description">
-                    <h3><%=s.itemname%></h3>
-                    <h6>Units Left: <%=s.unitsleft%></h6>
-                    <h6>Cost: $<%=s.price%></h6>
-                    <br>
-                </div>
-              </div> 
-        <% }); %>
-    </ul>
+    <form class="items">
+        <ul>
+            <!-- <h5 class="disabled" style="color:white"> Welcome, <%=username %>! </h5> -->
+            <% snacks.forEach(function(s) { %>
+               <div class="img-thumbnail flex-item">
+                    <img width="525px" height="490px" src='<%=s.itemlink%>'>
+                    <div id="description">
+                        <h3><%=s.itemname%></h3>
+                        <h6>Units Left: <%=s.unitsleft%></h6>
+                        <h6>Cost: $<%=s.price%></h6>
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">More Details</button>
+                        <br>
+                    </div>
+                  </div> 
+            <% }); %>
+        </ul>
+    </form>
 </div>
