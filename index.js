@@ -14,6 +14,7 @@ var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
 var logoutRouter = require('./routes/logout');
 var landingPageRouter = require('./routes/landingPage');
+var productDetailsRouter = require('./routes/productDetailsPage');
 
 app.use(bodyParser.urlencoded({extended:true})); //use to parse data sent using the POST method
 app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }, resave: true, saveUninitialized: true}));
@@ -42,6 +43,7 @@ app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
 app.use('/landingPage', landingPageRouter);
+app.use('/productDetailsPage', productDetailsRouter);
 module.exports = app;
 
 // functions //
