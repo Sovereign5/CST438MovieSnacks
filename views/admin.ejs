@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<h1>ADMIN PAGE</h1>
+<div>
+	<button class="btn btn-outline-warning my-2 my-sm-0" href="/admin-add">Add Items</button>
+</div>
+<div class="container">
+        <ul>
+            <!-- <h5 class="disabled" style="color:white"> Welcome, <%=username %>! </h5> -->
+            <% snacks.forEach(function(s) { %>
+            <form class="items" method="GET" action="/admin-modify">
+                <input type="hidden" name="snackID" value='<%=s.itemId %>' >
+                   <div class="img-thumbnail flex-item">
+                        <img width="525px" height="490px" src='<%=s.itemlink%>'>
+                        <div id="description">
+                            <h3><%=s.itemname%></h3>
+                            <h6>Units Left: <%=s.unitsleft%></h6>
+                            <h6>Cost: $<%=s.price%></h6>
+                            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Modify</button>
+                            <br>
+                        </div>
+                    </div> 
+            </form>
+            <% }); %>
+        </ul>
+</div>

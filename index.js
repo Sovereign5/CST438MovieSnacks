@@ -16,6 +16,9 @@ var logoutRouter = require('./routes/logout');
 var landingPageRouter = require('./routes/landingPage');
 var productDetailsRouter = require('./routes/productDetailsPage');
 var searchResultPageRouter = require('./routes/searchResultPage');
+var adminRouter = require('./routes/admin');
+var adminAddRouter = require('./routes/admin-add');
+var adminModifyRouter = require('./routes/admin-modify');
 
 app.use(bodyParser.urlencoded({extended:true})); //use to parse data sent using the POST method
 app.use(session({ secret: 'any word', cookie: { maxAge: 1000 * 60 * 5 }, resave: true, saveUninitialized: true}));
@@ -46,6 +49,9 @@ app.use('/logout', logoutRouter);
 app.use('/landingPage', landingPageRouter);
 app.use('/productDetailsPage', productDetailsRouter);
 app.use('/searchResultPage', searchResultPageRouter);
+app.use('/admin', adminRouter);
+app.use('/admin-add', adminAddRouter);
+app.use('/admin-modify', adminModifyRouter);
 module.exports = app;
 
 // functions //

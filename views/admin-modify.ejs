@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<div class="container">
+    <div class="img-thumbnail flex-item">
+    	    		<input type="hidden" name="snackID" value='<%=snacks.itemId %>' >
+                        <img width="725px" height="490px" src='<%=snacks.itemlink%>'>
+                        <div id="description">
+                            <h3><%=snacks.itemname%></h3>
+                            <h6>Units Left: <%=snacks.unitsleft%></h6>
+                            <h6>Cost: $<%=snacks.price%></h6>
+                            <h6>Description: <%=snacks.description%></h6>
+                            <br>
+                        </div>
+                    </div> 
+
+
+
+    <div>
+    	<form method="POST" action="/admin-modify">
+    		<label for="id">ID</label>
+    		<label id="id" name="id"> <%snacks.itemId%> </label><br>
+
+    		<label for="sname">Snack Name:</label>
+			<input type="text" id="sname" name="sname" value='<%=snacks.itemname%>'><br>
+			<label for="uleft">Units Left:</label>
+			<input type="text" id="uleft" name="uleft" value='<%=snacks.unitsleft%>'><br>
+
+			<label for="cost">Cost:</label>
+			<input type="text" id="cost" name="cost" value='<%=snacks.price%>'><br>	
+
+			<label for="desc">Description:</label>
+			<input type="text" id="desc" name="desc" value='<%=snacks.description%>'><br><br>
+			<input type="submit" value="Submit">
+    	</form>
+    </div>
+</div>
+
