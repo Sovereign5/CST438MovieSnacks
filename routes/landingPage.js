@@ -4,12 +4,19 @@ var mysql = require("mysql");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
     console.log("hello");
     let stmt = "SELECT * FROM items";
     db.query(stmt, function(error, results) {
         if (error) throw error;
         res.render('landingPage', {snacks: results, username: req.session.user}); // req.session.user
     });
+    db.end();
 });
 
 router.post('/', function(req, res, next) {
@@ -34,12 +41,6 @@ function dbConnection(){
 return conn;
 }
 
-const db = dbConnection();
-
-db.connect(function(err) {
-    if (err) {
-        console.log('error when connecting to db:', err);
-    }
-});
+//const db = dbConnection();
 
 module.exports = router;

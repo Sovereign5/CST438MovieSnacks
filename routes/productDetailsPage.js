@@ -4,6 +4,12 @@ var mysql = require("mysql");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
     //res.render('productDetailsPage', { title: 'Express' });
     let stmt = "SELECT * FROM items where itemId=?";
     let data = [req.query.snackID];
@@ -12,6 +18,7 @@ router.get('/', function(req, res, next) {
         console.log(results);
         res.render('productDetailsPage', {snacks: results[0]}); // req.session.user
     });
+    db.end();
 });
 
 router.post('/', async function(req, res, next) {
@@ -38,13 +45,5 @@ function dbConnection(){
 
 return conn;
 }
-
-const db = dbConnection();
-
-db.connect(function(err) {
-    if (err) {
-        console.log('error when connecting to db:', err);
-    }
-});
 
 module.exports = router;

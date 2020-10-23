@@ -8,6 +8,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async function(req, res, next) {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
     console.log(req.body.username + '\n');
     let userSignedUp = await checkUsernameAvailability(req.body.username);
     if(userSignedUp.length) {
@@ -17,9 +23,16 @@ router.post('/', async function(req, res, next) {
         if (error) throw error;
         res.render('login');
     });
+    db.end();
 });
 
 function checkUsernameAvailability(username) {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
     let stmt = 'SELECT * FROM users WHERE username=?';
     let data = [username];
     return new Promise(function(resolve, reject) {
@@ -29,6 +42,7 @@ function checkUsernameAvailability(username) {
             console.log(results);
             resolve(results);
      }) 
+        db.end();
   });
 }
 
@@ -44,12 +58,6 @@ function dbConnection(){
 return conn;
 }
 
-const db = dbConnection();
-
-db.connect(function(err) {
-    if (err) {
-        console.log('error when connecting to db:', err);
-    }
-});
+//const db = dbConnection();
 
 module.exports = router;
