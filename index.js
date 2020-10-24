@@ -15,7 +15,7 @@ var signupRouter = require('./routes/signup');
 var logoutRouter = require('./routes/logout');
 var landingPageRouter = require('./routes/landingPage');
 var productDetailsRouter = require('./routes/productDetailsPage');
-//var searchResultPageRouter = require('./routes/searchResultPage');
+var searchResultRouter = require('./routes/search-result');
 var adminRouter = require('./routes/admin');
 var adminAddRouter = require('./routes/admin-add');
 var adminModifyRouter = require('./routes/admin-modify');
@@ -48,7 +48,7 @@ app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
 app.use('/landingPage', landingPageRouter);
 app.use('/productDetailsPage', productDetailsRouter);
-//app.use('/searchResultPage', searchResultPageRouter);
+app.use('/search-result', searchResultRouter);
 app.use('/admin', adminRouter);
 app.use('/admin-add', adminAddRouter);
 app.use('/admin-modify', adminModifyRouter);
@@ -79,7 +79,7 @@ app.post('/admin-delete', async function(req, res) {
         console.log('error when connecting to db:', err);
     }
 });
-        
+
     let sql = 'DELETE FROM items WHERE itemname = ?';
     let params = [req.query.name];
     console.log(req.query.name);
