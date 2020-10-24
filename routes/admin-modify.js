@@ -29,41 +29,39 @@ router.post('/', async function(req, res) {
         }
     });
 
-    let stmt = "SELECT * FROM items where itemname=?";
-    let data = [req.body.itemname];
-    console.log(data);
-    var resultsAnswer;
-    db.query(stmt, data, function(error, results) {
-        if (error) throw error;
-        console.log(results);
-        resultsAnswer = results;
-    });
-
-
-    // let stmt2 = `UPDATE items
-    //             SET unitsleft = ?,
-    //             price = ?,
-    //             description = ?,
-
-    //             WHERE itemname = ?`;
-
-
-               let sql = `UPDATE items
-                      SET unitsleft = ?, 
-                      price = ?, 
-                      description = ?
+    let sql = `UPDATE items
+                SET unitsleft = ?, 
+                price = ?, 
+                description = ?
                       
-                      WHERE itemname = ?`;
+                WHERE itemname = ?`;
 
-    //console.log("TESTING TESTING TESTING TESTING" + req.body.itemId);
 
     let params = [req.body.uleft, req.body.cost, req.body.desc, req.body.sname];
-    console.log(params);
     db.query(sql, params, function(error, results) {
         if (error) throw error;
     });
     db.end();
-    res.render('admin-modify', {snacks: resultsAnswer}); // req.session.user
+    var snacksList = await getSnackList();
+    res.render('admin', {"snacks": snacksList}); // req.session.user
+});
+
+router.get('/admin-delete', async function(req, res) {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
+        
+    let sql = 'DELETE FROM items WHERE itemname = ?';
+    let params = [req.body.sname];
+    db.query(sql, params, function(error, results) {
+    if (error) throw error;
+    });
+    db.end();
+    var snacksList = await getSnackList();
+    res.render('admin', {"snacks": snacksList}); // req.session.user
 });
 
 function dbConnection(){
@@ -74,8 +72,24 @@ function dbConnection(){
              database: 'n6uisw5co07k8u4o',
             //  port: '8888'
         });
-
 return conn;
+}
+
+function getSnackList() {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
+    return new Promise(function(resolve, reject) {
+        let stmt = "SELECT * FROM items";
+        db.query(stmt, function(error, results) {
+            if (error) throw error;
+            db.end();
+            resolve(results);
+        });
+    });
 }
 
 module.exports = router;

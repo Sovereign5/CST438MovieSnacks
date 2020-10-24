@@ -1,11 +1,12 @@
 <%- include('partials/header') %>
 <h1>ADMIN PAGE</h1>
 <div>
-	<button class="btn btn-outline-warning my-2 my-sm-0" href="/admin-add">Add Items</button>
+    <form action="/admin-add">
+        <input type="submit" value="Add Item" />
+    </form>
 </div>
 <div class="container">
         <ul>
-            <!-- <h5 class="disabled" style="color:white"> Welcome, <%=username %>! </h5> -->
             <% snacks.forEach(function(s) { %>
             <form class="items" method="GET" action="/admin-modify">
                 <input type="hidden" name="snackID" value='<%=s.itemId %>' >

@@ -1,1 +1,21 @@
 <%- include('partials/header') %>
+<div class=container>
+	<div>
+    	<form method="POST" action="/admin-add">
+    		<label for="sname">Snack Name: </label>
+			<input type="text" id="sname" name="sname" value='A name'><br>
+			<label for="uleft">Units Left:</label>
+			<input type="text" id="uleft" name="uleft" value='An amount'><br>
+
+			<label for="cost">Cost:</label>
+			<input type="text" id="cost" name="cost" value='A cost'><br>	
+
+			<label for="cost">Image:</label>
+			<input type="text" id="pic" name="pic" value='An image url'><br>	
+
+			<label for="desc">Description:</label>
+			<input type="text" id="desc" name="desc" value='A description'><br><br>
+			<input type="submit" value="Submit">
+    	</form>
+    </div>
+</div>

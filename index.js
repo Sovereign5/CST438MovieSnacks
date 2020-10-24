@@ -72,6 +72,25 @@ function isAuthenticated(req, res, next){
 // return conn;
 // }
 
+app.post('/admin-delete', async function(req, res) {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
+        
+    let sql = 'DELETE FROM items WHERE itemname = ?';
+    let params = [req.query.name];
+    console.log(req.query.name);
+    db.query(sql, params, function(error, results) {
+    if (error) throw error;
+    });
+    db.end();
+    var snacksList = await getSnackList();
+    res.render('admin', {"snacks": snacksList}); // req.session.user
+});
+
 function dbConnection(){
     let conn = mysql.createConnection({
              host: 'gx97kbnhgjzh3efb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -83,6 +102,24 @@ function dbConnection(){
 
 return conn;
 }
+
+function getSnackList() {
+    const db = dbConnection();
+    db.connect(function(err) {
+    if (err) {
+        console.log('error when connecting to db:', err);
+    }
+});
+    return new Promise(function(resolve, reject) {
+        let stmt = "SELECT * FROM items";
+        db.query(stmt, function(error, results) {
+            if (error) throw error;
+            db.end();
+            resolve(results);
+        });
+    });
+}
+
 
 const db = dbConnection().connect();
 global.db = db;
