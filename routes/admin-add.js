@@ -21,7 +21,7 @@ router.post('/', async function(req, res) {
 
 
 
-    let params = [id, req.body.pic, req.body.pic, req.body.sname, req.body.uleft, req.body.cost, req.body.desc];
+    let params = [id, req.body.pic, req.body.sname, req.body.uleft, req.body.cost, req.body.desc];
     console.log("PARAMS" + params);
     db.query(sql, params, function(error, results) {
         if (error) throw error;
