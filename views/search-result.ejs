@@ -1,1 +1,14 @@
 <%- include('partials/header') %>
+
+<div class="container">
+    <div class="img-thumbnail flex-item">
+                        <img width="725px" height="490px" src='<%=snack.itemlink%>'>
+                        <div id="description">
+                            <h3><%=snack.itemname%></h3>
+                            <h6>Units Left: <%=snack.unitsleft%></h6>
+                            <h6>Cost: $<%=snack.price%></h6>
+                            <h6>Description: <%=snack.description%></h6>
+                            <br>
+                        </div>
+                    </div>
+</div>

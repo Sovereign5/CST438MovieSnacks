@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require("mysql");
 
+
 router.get('/',  function(req, res, next) {
     res.render('search-result');
 });
@@ -9,18 +10,32 @@ router.get('/',  function(req, res, next) {
 router.post('/', async function(req, res, next) {
     const db = dbConnection();
     db.connect(function(err) {
-    if (err) {
-        console.log('error when connecting to db:', err);
-        }
+      if (err) {
+          console.log('error when connecting to db:', err);
+      }
     });
-    var params = [req.body.search]
-    let sql = "SELECT * FROM items WHERE itemId = ?";
+    let sql = "SELECT * FROM items";
+    //console.log(req);
+    var params = [req.body.urlSearch]
+
     db.query(sql, params, function(error, results) {
+        // select item from results based on query
+        //CODE:
+        var searchInput = req.body.input1
+        var result = ""
+        console.log(results)
+        for (i = 0; i < results.length; i++) {
+            if (results[i].itemname == searchInput) {
+                result = results[i]
+                console.log(result)
+                break;
+            }
+        }
+        console.log(searchInput)
         if (error) throw error;
+        res.render('search-result', {snack: result, searchInput : searchInput});
     });
-    var snacksList = await getSnackList();
     db.end();
-    res.render('search-result', snacksList);
 });
 
 function dbConnection(){
